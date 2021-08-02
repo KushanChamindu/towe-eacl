@@ -208,7 +208,7 @@ class Trainer():
                 start_to_train_bert_epoch = 10
                 if i >= start_to_train_bert_epoch:
 
-                    self.optimizer = torch.optim.Adam(model.parameters(), lr=1e-5, weight_decay=0)
+                    self.optimizer = torch.optim.Adam(self.model.parameters(), lr=1e-5, weight_decay=0)
 
                     # for param_group in self.optimizer.param_groups:
                     #     param_group['lr'] = 1e-5
