@@ -1,6 +1,6 @@
 from data_load import get_data_set
 from ensemble_model import MyEnsemble
-from Net import ExtractionNet
+from Caps_Net import ExtractionNet
 import torch
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader

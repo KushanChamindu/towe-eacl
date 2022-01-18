@@ -4,7 +4,7 @@ from layers.elu_layer import Elu_layer
 from layers.conv_layer import ConvLayer
 from layers.caps_conv_layer import ConvCapsLayer
 from layers.routing import Routing, CapsuleNorm
-from config import Config
+from Caps_config import Config
 
 import torch
 import torch.nn.functional as F
