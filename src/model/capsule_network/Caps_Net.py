@@ -15,7 +15,7 @@ class ExtractionCapNet(nn.Module):
     def __init__(self, word_embed_dim, output_size, hidden_size, capsule_num, filter_ensemble_size, dropout_ratio, intermediate_size, sentence_length):
         super(ExtractionCapNet, self).__init__()
 
-        self.embedding_layer = nn.Embedding.from_pretrained(embeddings=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")), freeze=True)
+        # self.embedding_layer = nn.Embedding.from_pretrained(embeddings=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")), freeze=True)
 
         self.elu_layer = Elu_layer(in_channels=1, out_channels=capsule_num,
                                    num_features=word_embed_dim, filter_ensemble_size=filter_ensemble_size)
@@ -36,10 +36,10 @@ class ExtractionCapNet(nn.Module):
         # torch.nn.init.xavier_normal_(self.routing_3.W)
 
     def forward(self, x):
-        embeddings = self.embedding_layer(x)
-        embeddings = torch.unsqueeze(embeddings, 1).float()
-        elu_layer = self.elu_layer(embeddings)
-        conv_layer = self.conv_layer(elu_layer, embeddings)
+        # embeddings = self.embedding_layer(x)
+        # embeddings = torch.unsqueeze(embeddings, 1).float()
+        elu_layer = self.elu_layer(x)
+        conv_layer = self.conv_layer(elu_layer, x)
         caps_conv_layer = self.caps_conv_layer(conv_layer)
         routing_1 = self.routing_1(caps_conv_layer)
         routing_2 = self.routing_2(routing_1)
