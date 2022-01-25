@@ -11,9 +11,9 @@ import torch.nn.functional as F
 from torch import nn
 from torch.nn.parameter import Parameter
 
-class ExtractionNet(nn.Module):
+class ExtractionCapNet(nn.Module):
     def __init__(self, word_embed_dim, output_size, hidden_size, capsule_num, filter_ensemble_size, dropout_ratio, intermediate_size, sentence_length):
-        super(ExtractionNet, self).__init__()
+        super(ExtractionCapNet, self).__init__()
 
         self.embedding_layer = nn.Embedding.from_pretrained(embeddings=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")), freeze=True)
 
@@ -50,6 +50,6 @@ class ExtractionNet(nn.Module):
 # config = Config(
 #     pretrain_vec=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")))
 
-# model = ExtractionNet(word_embed_dim=300, output_size=4, hidden_size=128,
+# model = ExtractionCapNet(word_embed_dim=300, output_size=4, hidden_size=128,
 #                       capsule_num=16, filter_ensemble_size=3, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
 

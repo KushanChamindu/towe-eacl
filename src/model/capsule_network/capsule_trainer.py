@@ -1,6 +1,6 @@
 from data_load import get_data_set
 from ensemble_model import MyEnsemble
-from Caps_Net import ExtractionNet
+from Caps_Net import ExtractionCapNet
 import torch
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
@@ -19,11 +19,11 @@ batch_size = 8
 test_dl = DataLoader(test_ds, batch_size, shuffle=True)
 train_dl = DataLoader(train_ds, batch_size, shuffle=True)
 
-model = ExtractionNet(word_embed_dim=300, output_size=4, hidden_size=128,
+model = ExtractionCapNet(word_embed_dim=300, output_size=4, hidden_size=128,
                       capsule_num=16, filter_ensemble_size=3, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
-# extract_net_2 = ExtractionNet(word_embed_dim=300, output_size=4, hidden_size=128,
+# extract_net_2 = ExtractionCapNet(word_embed_dim=300, output_size=4, hidden_size=128,
 #                       capsule_num=16, filter_ensemble_size=4, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
-# extract_net_3 = ExtractionNet(word_embed_dim=300, output_size=4, hidden_size=128,
+# extract_net_3 = ExtractionCapNet(word_embed_dim=300, output_size=4, hidden_size=128,
 #                       capsule_num=16, filter_ensemble_size=5, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
 # model = MyEnsemble(modelA=extract_net_1,modelB=extract_net_2, modelC=extract_net_3)
 
