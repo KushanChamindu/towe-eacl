@@ -141,8 +141,11 @@ class ExtractionNet(torch.nn.Module):
             edge_idx = batch.edge_index
             edge_type = batch.edge_type
             edge_distance = batch.edge_distance
-
-            x = self.MainNet(x, edge_idx, edge_type, edge_distance)   ## this line of code should be changed according to the capsule network ExtractionCapNet
+            if self.model_config['mainnet'] == "CapsNet":
+              x = self.MainNet(x)
+            else:
+              x = self.MainNet(x, edge_idx, edge_type, edge_distance)  ## this line of code should be changed according to the capsule network ExtractionCapNet
+            # x = self.MainNet(x, edge_idx, edge_type, edge_distance)   
             x = x.reshape(-1, 100, self.hidden_size)
 
             if self.have_word_emb:
