@@ -37,7 +37,7 @@ class ExtractionCapNet(nn.Module):
 
     def forward(self, x):
         # embeddings = self.embedding_layer(x)
-        # embeddings = torch.unsqueeze(embeddings, 1).float()
+        x = torch.unsqueeze(x, 1).float()
         elu_layer = self.elu_layer(x)
         conv_layer = self.conv_layer(elu_layer, x)
         caps_conv_layer = self.caps_conv_layer(conv_layer)
