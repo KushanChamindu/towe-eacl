@@ -1,10 +1,10 @@
-from layers.utils import load_word_embedding_matrix
+from src.model.capsule_network.layers.utils import load_word_embedding_matrix
 import math
-from layers.elu_layer import Elu_layer
-from layers.conv_layer import ConvLayer
-from layers.caps_conv_layer import ConvCapsLayer
-from layers.routing import Routing, CapsuleNorm
-from Caps_config import Config
+from src.model.capsule_network.layers.elu_layer import Elu_layer
+from src.model.capsule_network.layers.conv_layer import ConvLayer
+from src.model.capsule_network.layers.caps_conv_layer import ConvCapsLayer
+from src.model.capsule_network.layers.routing import Routing, CapsuleNorm
+from src.model.capsule_network.Caps_config import Config
 
 import torch
 import torch.nn.functional as F

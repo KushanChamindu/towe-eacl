@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from layers.utils import Reshape
+from src.model.capsule_network.layers.utils import Reshape
 
 class ConvCapsLayer(nn.Module):
     def __init__(self, in_channels, out_channels, dropout_ratio, intermediate_size, filter_ensemble_size):

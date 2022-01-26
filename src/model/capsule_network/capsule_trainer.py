@@ -1,6 +1,6 @@
 from data_load import get_data_set
-from ensemble_model import MyEnsemble
-from Caps_Net import ExtractionCapNet
+from src.model.capsule_network.ensemble_model import MyEnsemble
+from src.model.capsule_network.Caps_Net import ExtractionCapNet
 import torch
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader

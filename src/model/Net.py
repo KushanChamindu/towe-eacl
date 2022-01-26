@@ -18,7 +18,7 @@ from src.model.layers.SelfAttention import SelfAttention
 from src.model.LSTM_CRF import LinearCRF
 
 from src.tools.utils import init_w2v_matrix
-from scr.model.capsule_network.Caps_Net import ExtractionCapNet
+from src.model.capsule_network.Caps_Net import ExtractionCapNet
 
 
 class ExtractionNet(torch.nn.Module):
@@ -74,7 +74,7 @@ class ExtractionNet(torch.nn.Module):
             if mainnet_name == "DeepARGCNNet":
                 self.MainNet = DeepARGCNNet(num_features=self.feature_dim, num_classes=self.hidden_size, num_mid_layers=self.model_config['num_mid_layers'], num_heads=self.model_config['num_heads'])
             elif mainnet_name == "CapsNet":
-                self.MainNet = ExtractionCapNet(word_embed_dim=300,
+                self.MainNet = ExtractionCapNet(word_embed_dim=self.feature_dim,
                       capsule_num=16, filter_ensemble_size=3, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
             else:
                 self.MainNet = eval(mainnet_name)(num_features=self.feature_dim, num_classes=self.hidden_size)

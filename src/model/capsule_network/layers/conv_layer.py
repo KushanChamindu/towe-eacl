@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from layers.utils import Multiply
+from src.model.capsule_network.layers.utils import Multiply
 
 class ConvLayer(nn.Module):
     def __init__(self, num_features, in_channels, out_channels, filter_ensemble_size, dropout_ratio):
