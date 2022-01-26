@@ -5,7 +5,7 @@ from pandas.core.base import SelectionMixin
 import torch
 from torch import nn
 from torch.nn.parameter import Parameter
-from capsule_utils import squash
+from src.model.capsule_network.capsule_utils import squash
 from torch.autograd import Variable
 import torch.nn.functional as F
 

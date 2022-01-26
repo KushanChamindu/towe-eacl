@@ -12,7 +12,7 @@ from torch import nn
 from torch.nn.parameter import Parameter
 
 class ExtractionCapNet(nn.Module):
-    def __init__(self, word_embed_dim, output_size, hidden_size, capsule_num, filter_ensemble_size, dropout_ratio, intermediate_size, sentence_length):
+    def __init__(self, word_embed_dim, capsule_num, filter_ensemble_size, dropout_ratio, intermediate_size, sentence_length):
         super(ExtractionCapNet, self).__init__()
 
         # self.embedding_layer = nn.Embedding.from_pretrained(embeddings=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")), freeze=True)
