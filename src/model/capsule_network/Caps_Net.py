@@ -27,6 +27,9 @@ class ExtractionCapNet(nn.Module):
         self.routing_1 = Routing(num_capsule=16,dim_capsule=16,input_shape=intermediate_size, routing=True,num_routing=3)
         self.routing_2 = Routing(num_capsule=4,dim_capsule=16,input_shape=(16,16), routing=True,num_routing=3)
 
+        # self.routing_1 = Routing(num_capsule=400,dim_capsule=128,input_shape=intermediate_size, routing=True,num_routing=3)
+        # self.routing_2 = Routing(num_capsule=100,dim_capsule=128,input_shape=(400,128), routing=True,num_routing=3)
+
         self.capsule_norm = CapsuleNorm()
         # self.init_weight()
 
@@ -39,7 +42,7 @@ class ExtractionCapNet(nn.Module):
         # embeddings = self.embedding_layer(x)
         x = torch.unsqueeze(x, 1).float()
         elu_layer = self.elu_layer(x)
-        print("Elu layer shape - ",elu_layer.shape)
+        print("\nElu layer shape - ",elu_layer.shape)
         conv_layer = self.conv_layer(elu_layer, x)
         print("Conv layer shape - ", conv_layer.shape)
         caps_conv_layer = self.caps_conv_layer(conv_layer)

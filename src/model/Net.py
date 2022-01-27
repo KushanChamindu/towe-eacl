@@ -76,6 +76,9 @@ class ExtractionNet(torch.nn.Module):
             elif mainnet_name == "CapsNet":
                 self.MainNet = ExtractionCapNet(word_embed_dim=self.feature_dim,
                       capsule_num=16, filter_ensemble_size=3, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=30)
+
+                    #   ExtractionCapNet(word_embed_dim=self.feature_dim,
+                    #   capsule_num=256, filter_ensemble_size=3, dropout_ratio=0.8, intermediate_size=(128, 8), sentence_length=100)
             else:
                 self.MainNet = eval(mainnet_name)(num_features=self.feature_dim, num_classes=self.hidden_size)
 
