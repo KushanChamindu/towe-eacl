@@ -1,0 +1,7 @@
+input - [16, 100, 868]
+Elu layer shape -  torch.Size([16, 16, 98, 1])
+Conv layer shape -  torch.Size([16, 16, 98, 1])
+Caps conv layer shape -  torch.Size([1136, 128, 8])
+routing_1 layer shape -  torch.Size([1136, 16, 16])
+routing_2 layer shape -  torch.Size([1136, 4, 16])
+capsule_norm layer shape -  torch.Size([1136, 4])
