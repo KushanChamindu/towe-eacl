@@ -24,11 +24,11 @@ class ExtractionCapNet(nn.Module):
         self.caps_conv_layer = ConvCapsLayer(
             in_channels=capsule_num, out_channels=intermediate_size[0]*intermediate_size[1], intermediate_size=intermediate_size, dropout_ratio=dropout_ratio, filter_ensemble_size=(int(sentence_length - filter_ensemble_size + 1), 1))  #int(sentence_length - (filter_ensemble_size//2)*2)
         
-        self.routing_1 = Routing(num_capsule=16,dim_capsule=16,input_shape=intermediate_size, routing=True,num_routing=3)
-        self.routing_2 = Routing(num_capsule=4,dim_capsule=16,input_shape=(16,16), routing=True,num_routing=3)
+        # self.routing_1 = Routing(num_capsule=16,dim_capsule=16,input_shape=intermediate_size, routing=True,num_routing=3)
+        # self.routing_2 = Routing(num_capsule=4,dim_capsule=16,input_shape=(16,16), routing=True,num_routing=3)
 
-        # self.routing_1 = Routing(num_capsule=400,dim_capsule=128,input_shape=intermediate_size, routing=True,num_routing=3)
-        # self.routing_2 = Routing(num_capsule=100,dim_capsule=128,input_shape=(400,128), routing=True,num_routing=3)
+        self.routing_1 = Routing(num_capsule=400,dim_capsule=128,input_shape=intermediate_size, routing=True,num_routing=3)
+        self.routing_2 = Routing(num_capsule=100,dim_capsule=128,input_shape=(400,128), routing=True,num_routing=3)
 
         self.capsule_norm = CapsuleNorm()
         # self.init_weight()
@@ -51,10 +51,10 @@ class ExtractionCapNet(nn.Module):
         print("routing_1 layer shape - ", routing_1.shape)
         routing_2 = self.routing_2(routing_1)
         print("routing_2 layer shape - ", routing_2.shape)
-        capsule_norm = self.capsule_norm(routing_2)
-        print("capsule_norm layer shape - ", capsule_norm.shape)
+        # capsule_norm = self.capsule_norm(routing_2)
+        # print("capsule_norm layer shape - ", capsule_norm.shape)
         # print(capsule_norm.size())
-        return(capsule_norm)
+        return(routing_2)
 
 # config = Config(
 #     pretrain_vec=torch.from_numpy(load_word_embedding_matrix("./embeddings/fasttext_lankadeepa_gossiplanka_300_5")))

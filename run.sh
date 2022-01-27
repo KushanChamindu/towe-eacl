@@ -1,6 +1,6 @@
 export PYTHONPATH=./
-export model=w2v_gnn_lstm
-export dataset=14res
+export model=bert_gnn_lstm
+export dataset=recreation_dataset
 
 if [ -d "./data/$dataset/processed" ]; then
   rm -r ./data/$dataset/processed
