@@ -27,8 +27,8 @@ class ExtractionCapNet(nn.Module):
         # self.routing_1 = Routing(num_capsule=16,dim_capsule=16,input_shape=intermediate_size, routing=True,num_routing=3)
         # self.routing_2 = Routing(num_capsule=4,dim_capsule=16,input_shape=(16,16), routing=True,num_routing=3)
 
-        self.routing_1 = Routing(num_capsule=400,dim_capsule=128,input_shape=intermediate_size, routing=True,num_routing=3)
-        self.routing_2 = Routing(num_capsule=100,dim_capsule=128,input_shape=(400,128), routing=True,num_routing=3)
+        self.routing_1 = Routing(num_capsule=128,dim_capsule=128,input_shape=intermediate_size, routing=True,num_routing=3)
+        self.routing_2 = Routing(num_capsule=100,dim_capsule=128,input_shape=(128,128), routing=True,num_routing=3)
 
         self.capsule_norm = CapsuleNorm()
         # self.init_weight()
