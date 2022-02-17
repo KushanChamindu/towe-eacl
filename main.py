@@ -84,7 +84,7 @@ if __name__ == "__main__":
     else:
         loss_op = MultiFocalLoss(num_class=num_class, gamma=2)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=0)
+    optimizer = torch.optim.Adam(model.parameters(),  lr=0.002, betas=(0.7,0.999),weight_decay=1e-5)  ##lr=1e-3, weight_decay=0
 
     trainer = Trainer(loader, model, loss_op, optimizer, args, config, fitlog_flag=True)
     trainer.load_model()
