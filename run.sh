@@ -15,7 +15,7 @@ export threshold=3
 CUDA_VISIBLE_DEVICES=0 python main.py \
 --config_path ./src/model/config/conf_$model.ini \
 --data_path ./data/$dataset \
---epoch 40 --train_batch_size 16 \
+--epoch 40 --train_batch_size 8 \
 --num_mid_layers $num_mid_layers \
 --num_heads $num_heads \
 --threshold $threshold \
