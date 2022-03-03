@@ -69,8 +69,9 @@ def numericalize(text, vocab):
     assert len(ids) == len(tokens)
     return ids
 
-def numericalize_label(labels, vocab):
+def numericalize_label(labels, vocab):  ## this should be changed
     label_tensor = []
+    
     for i, label in enumerate(labels):
         label_tensor.append(vocab[label])
     return label_tensor

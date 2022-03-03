@@ -13,6 +13,8 @@ from torch.nn.utils.rnn import pad_sequence
 from torch_geometric.data import Data
 
 from transformers import BertTokenizer
+import ast
+
 
 import sys
 
@@ -85,7 +87,13 @@ class Processer():
         return self.data
 
     def process_data(self):
-        node_data_dict = dict()
+        # file = open("dictionary_string.txt", "r")
+
+        # contents = file.read()
+        # dictionary = ast.literal_eval(contents)
+
+        # file.close()
+        # node_data_dict = dict()
         for dataset_type in self.data.keys():
             assert dataset_type in ["train", "valid", "test"]
             text, target, opinion = self.data[dataset_type][0], self.data[dataset_type][1], self.data[dataset_type][2]
