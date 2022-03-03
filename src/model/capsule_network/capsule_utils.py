@@ -1,3 +1,4 @@
+from os import scandir
 import torch
 from torch.autograd import Variable
 
@@ -15,7 +16,8 @@ def squash(vectors, axis=-1):
     # print("Norm - ",s_squared_norm)
     k = ((torch.sqrt(s_squared_norm.float())))
     # print("squre root - ",k)
-    scale = s_squared_norm / (1 + s_squared_norm)/ torch.sqrt(s_squared_norm + 1e-07)
+    # scale = s_squared_norm / (1 + s_squared_norm)/ torch.sqrt(s_squared_norm + 1e-07)
+    scale = ((s_squared_norm/(1+s_squared_norm))/torch.sqrt(s_squared_norm + 1e-07))
     # if torch.min(scale)<0:
     # print("scale - ",scale)    
     output = scale * vectors
@@ -27,6 +29,9 @@ def squash(vectors, axis=-1):
     #     print("output - ", output)
 
     return output
+#     s_squared_norm = K.sum(K.square(vectors), axis, keepdims=True)
+#     scale = s_squared_norm / (1 + s_squared_norm) / K.sqrt(s_squared_norm + K.epsilon())
+#     return scale * vectors
 
 def squash_fn(input, dim=-1):
     norm = input.norm(p=2, dim=dim, keepdim=True)
@@ -37,12 +42,12 @@ def squash_d(x, axis=-1):
     scale = torch.sqrt(s_squared_norm +1e-07)
     return x / scale
 
-import numpy as np
+# import numpy as np
 
-vectors = np.array([1,2,3,4,-10000])
-tensor = torch.from_numpy(vectors)
+# vectors = np.array([3,1,1,0,2])
+# tensor = torch.from_numpy(vectors)
 
-output = squash(tensor)
+# output = squash(tensor)
 # output = squash(output)
 # output = squash(output)
 # output = squash(output)

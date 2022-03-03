@@ -114,7 +114,7 @@ class ExtractionNet(torch.nn.Module):
 
         target_embedding = self.target_embedding(batch.target)
         target_embedding = target_embedding.reshape(-1, 100, self.target_emb_dim)
-
+        
         x = batch.text_idx
 
         if self.have_word_emb:
@@ -141,14 +141,16 @@ class ExtractionNet(torch.nn.Module):
 
         if self.graph_mode:
             # x = x.reshape(-1, self.word_embed_dim + self.target_emb_dim + self.tag_embed_dim)
-            edge_idx = batch.edge_index
-            edge_type = batch.edge_type
-            edge_distance = batch.edge_distance
+           
             if self.model_config['mainnet'] == "CapsNet":
               x = self.MainNet(x)
             else:
               x = x.reshape(-1, self.feature_dim)
-              x = self.MainNet(x, edge_idx, edge_type, edge_distance)  ## this line of code should be changed according to the capsule network ExtractionCapNet
+              edge_idx = batch.edge_index
+              edge_type = batch.edge_type
+              edge_distance = batch.edge_distance
+              
+              x = self.MainNet(x, edge_idx, edge_type, edge_distance) 
               x = x.reshape(-1, 100, self.hidden_size)
             # x = self.MainNet(x, edge_idx, edge_type, edge_distance)   
             
