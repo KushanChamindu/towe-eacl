@@ -130,7 +130,7 @@ class ExtractionNet(torch.nn.Module):
                     with torch.no_grad():
                         word_embedding = self.embedding_model(x)[0]
 
-            x = torch.cat([word_embedding, target_embedding], dim=-1)
+            x = torch.cat([word_embedding, target_embedding], dim=-1)  ### POS embeddings
         else:
             x = target_embedding
 

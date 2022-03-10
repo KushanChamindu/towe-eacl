@@ -69,13 +69,44 @@ def numericalize(text, vocab):
     assert len(ids) == len(tokens)
     return ids
 
-def numericalize_label(labels, vocab):  ## this should be changed
+def numericalize_label(labels, vocab): 
     label_tensor = []
     
     for i, label in enumerate(labels):
         label_tensor.append(vocab[label])
     return label_tensor
 
+def numericalize_label_aspects(aspects, opinions):  
+    vocab_aspect = {'B': 1, 'I': 2, 'O': 0}
+    vocab_opinion = {'B': 4, 'I': 5, 'O': 0}
+    label_tensor = []
+    
+    for aspect_label, opinion_label in (zip(aspects, opinions)):
+        if(aspect_label == "B" or aspect_label=="I" ):
+            label_tensor.append(vocab_aspect[aspect_label])
+        if(opinion_label == "B" or opinion_label=="I" ):
+            label_tensor.append(vocab_opinion[opinion_label])
+    return label_tensor
+
+def numericalize_label_aspects(aspects, opinions):  
+    vocab_aspect = {'B': 1, 'I': 2, 'O': 0}
+    vocab_opinion = {'B': 4, 'I': 5, 'O': 0}
+    label_tensor = []
+    
+    for i, label in enumerate(aspects):
+        label_tensor.append(vocab_aspect[label])
+    for i,opinion_label in enumerate(opinions):
+        if(opinion_label == "B" or opinion_label=="I" ):
+            label_tensor[i] = vocab_opinion[opinion_label]
+    return label_tensor
+
+
+def numericalize_label_add_opinion(labels, output):
+    vocab_opinion = {'B': 4, 'I': 5, 'O': 0}
+    for i,opinion_label in enumerate(labels):
+        if(opinion_label == "B" or opinion_label=="I" ):
+            output[i] = vocab_opinion[opinion_label]
+    return output
 def score_BIO(predicted, golden, ignore_index=-1):
     # O:0, B:1, I:2
     # print(predicted)

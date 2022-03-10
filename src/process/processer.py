@@ -5,7 +5,7 @@ import os
 from functools import partial
 
 from src.tools.utils import tprint, init_w2v_matrix
-from src.tools.TOWE_utils import load_text_target_label, split_dev, numericalize, numericalize_label
+from src.tools.TOWE_utils import load_text_target_label, split_dev, numericalize, numericalize_label, numericalize_label_aspects , numericalize_label_add_opinion
 from src.process.grapher import Grapher
 
 from torch.nn.utils.rnn import pad_sequence
@@ -93,7 +93,7 @@ class Processer():
         # dictionary = ast.literal_eval(contents)
 
         # file.close()
-        # node_data_dict = dict()
+        node_data_dict = dict()
         for dataset_type in self.data.keys():
             assert dataset_type in ["train", "valid", "test"]
             text, target, opinion = self.data[dataset_type][0], self.data[dataset_type][1], self.data[dataset_type][2]
@@ -156,6 +156,10 @@ class Processer():
 
         numericalized_target = [torch.tensor(numericalize_label(target, self.tag2id), dtype=torch.long) for target in
                                 targets]
+        numericalized_target = numericalize_label_add_opinion(opinions, numericalized_target)
+
+        # numericalized_target = [torch.tensor(numericalize_label_aspects(target,opinions), dtype=torch.long) for target, opinions in
+        #                         zip(targets,opinions)]
         numericalized_label = [torch.tensor(numericalize_label(label, self.tag2id), dtype=torch.long) for label in
                                opinions]
 
