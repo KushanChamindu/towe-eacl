@@ -39,4 +39,9 @@ Models and results can be found at our EACL 2021 paper https://www.aclweb.org/an
 
 bash run.sh
 
-#### result
+#### Newly added features
+* Created a new Student Feedback Data set and can find that through https://github.com/KushanChamindu/Student_feedback_analysis_dataset
+* Added Capsule Network Model. https://github.com/KushanChamindu/Capsule_network_text_pytorch
+
+#### Publication
+[Dataset and Baseline for Automatic Student Feedback Analysis](https://aclanthology.org/2022.lrec-1.219) (Herath et al., LREC 2022)
